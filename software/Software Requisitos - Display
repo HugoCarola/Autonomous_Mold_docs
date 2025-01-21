@@ -1,0 +1,12 @@
+Requisitos para o Display
+
+RaspeberryPi OS.
+Qualquer Compilador para correr a aplicação com as Bibliotecas Python: 
+Tkinter 
+Matplotlib
+
+Para a base de dados:
+PostgresSQL
+Pgadmin
+
+O Raspberry Pi deve estar conectado à mesma rede que o servidor da base de dados.
