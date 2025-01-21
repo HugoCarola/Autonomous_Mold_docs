@@ -1,0 +1,1 @@
+Ficheiros da simulação realizada no software LTSpice 
