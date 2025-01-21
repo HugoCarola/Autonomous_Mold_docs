@@ -1,0 +1,82 @@
+//&w5500 {
+//    compatible = "wiznet,w5500";
+//    spi-max-frequency = <8000000>;
+//    cs-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;  /* SCS (Chip Select) conectado ao P0.12 */
+//    int-gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>; /* INT (Interrupt) conectado ao P0.17 */
+//    reset-gpios = <&gpio0 16 GPIO_ACTIVE_LOW>; /* RST (Reset) conectado ao P0.16 */
+//    label = "W5500";
+//};
+
+//&spi0 {
+//    status = "okay";
+//    sck-pin = <13>;  /* SCLK conectado ao P0.13 */
+//    mosi-pin = <14>; /* MOSI conectado ao P0.14 */
+//    miso-pin = <15>; /* MISO conectado ao P0.15 */
+//};
+
+//&spi3 {
+//    status = "okay";
+//    cs-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
+//    w5500: w5500@0 {
+//        compatible = "wiznet,w5500";
+//        reg = <0>;
+//        interrupt-gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
+//        status = "okay";
+//    };
+//};
+
+
+&spi0 {
+    status = "disabled";
+};
+&spi1{
+    status = "disabled";
+};
+&spi2 {
+    status = "disabled";
+};
+
+
+&spi3 {
+    compatible = "nordic,nrf-spim";    /* Driver SPI para nRF52833 */
+
+    status = "okay";  /* Ativa o SPI3 */
+
+    /* Define os pinos do SPI */
+    //pinctrl-0 = < &spi3_default >;
+    //pinctrl-1 = < &spi3_sleep >;
+    //pinctrl-names = "default", "sleep";
+
+    /* Configuração do Chip Select (CS) */
+    cs-gpios = < &gpio0 22 GPIO_ACTIVE_LOW >; /* GPIO para CS */
+
+    w5500: w5500@0 {
+        compatible = "wiznet,w5500";
+        reg = <0>;  /* Endereço do dispositivo SPI */
+        spi-max-frequency = <8000000>; /* Frequência máxima do SPI (8 MHz) */
+        int-gpios = < &gpio0 17 GPIO_ACTIVE_LOW >; /* Pino de interrupção */
+        reset-gpios = <&gpio0 20 GPIO_ACTIVE_LOW>; /* Pino de reset */
+        status = "okay";
+    };
+};
+
+/*&pinctrl {
+    spi3_default: spi3_default {
+        group1 {
+            psels = <0 21>,   P1.01 como SCK 
+                    <0 20>,   P1.02 como MOSI 
+                    <0 19>;   P1.07 como MISO 
+            bias-pull-up;
+        };
+    };
+
+    spi3_sleep: spi3_sleep {
+        group1 {
+            psels = <0 21>,  
+                    <0 20>,  
+                    <0 19>;
+            low-power-enable;
+        };
+    };
+};*/
+

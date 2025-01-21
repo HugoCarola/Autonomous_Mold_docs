@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "kernel.h": "c",
+        "net_if.h": "c",
+        "socket.h": "c",
+        "net_mgmt.h": "c",
+        "net_context.h": "c",
+        "ethernet.h": "c"
+    }
+}
